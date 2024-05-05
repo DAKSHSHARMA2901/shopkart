@@ -1,0 +1,8 @@
+.navbg {
+    background-color: #05f7f7;
+}
+
+.navbg a {
+    color: rgb(6, 6, 6);
+    font-family: '500'; /* Enclose font family name in quotation marks */
+}
