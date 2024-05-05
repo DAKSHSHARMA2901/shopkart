@@ -1,0 +1,229 @@
+
+
+{% load static%}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% block title %}{% endblock title %}</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+</head>
+<body>
+<!-- start header-->
+{% block header %}
+<div>
+  <marquee behavior="" direction="left" class="marq"bgcolor="white">HAPPY CUSTOMERS | Upto 65% OFF | 7 DAYS FREE EXCHANGE | NEW DROP - ALL PURPOSE SHOES AND ALL KINDS OF CLOTHES </marquee>
+
+</div>
+<div class="container-fluid">
+<div class="row">
+
+<nav class="navbar navbar-expand-lg navbg">
+  
+  <div class="container-fluid">
+     <a class="navbar-brand" href="#">
+      <img src="{% static 'images/LOGO.png' %}" alt="Bootstrap" width="80" height="70">
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+
+        <li class="nav-item">
+          <a class="nav-link " aria-current="page" href="{% url 'index' %}">
+            <img src="{% static 'images/home.png' %}"width="30" height="30" alt="Home">
+          </a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'about' %}">About</a>
+        </li>
+
+        
+        {% if user.is_authenticated %}
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'signout' %}">Signout</a>
+        </li>
+        {% else %}
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'signin' %}">Signin</a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'signup' %}">Signup</a>
+        </li>
+        {% endif %}
+
+        
+
+         <li class="nav-item">
+          
+          <a class="nav-link" href="{% url 'wishlist' %}">Wishlist</a>
+        </li>
+
+        
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'orders' %}">Orders</a>
+        </li>
+
+        {% if user.is_authenticated %}
+        
+          <li class="nav-item">
+            <a class="nav-link text-black fw-bold" href="#">Welcome {{user.first_name}}</a>
+          </li>
+
+        {% else %}
+
+           <li class="nav-item">
+            <a class="nav-link text-black fw-bold" href="#">Welcome Guest</a>
+          </li>
+        {% endif %}
+       
+
+
+
+       
+      </ul>
+     
+      <form class="d-flex" role="search" action="{% url 'search_bar' %}">
+        <input class="form-control me-2" type="search" placeholder="Search product" aria-label="Search" size="80" name="searchbar">
+        <button class="btn btn-outline-success" type="submit">Search</button>
+      </form>
+
+      <li class="nav-item" style="list-style-type: none;">
+          <a class="nav-link" href="{% url 'cart' %}">
+              <img src="{% static 'images/cart.png' %}"width="50" height="40" alt="Cart">
+          </a>
+      </li>
+        
+    
+    </div>
+  </div>
+</nav>
+
+</div>
+<div class="col_imgcus newcol_img" scroll-me="true">
+  <img class="lazyload" src="https://neemans.com/cdn/shop/collections/collectionpagebanner_EOSS_c40ff309-4b71-40bb-8413-196567a1a0fd.jpg?v=1714127907" alt="image" width="100%" height="auto">
+</div>
+<div class="row bg-body-tertiary py-2 text-center">
+  <div class="col-lg-2"><a href="#" class="nav-link dropdown-toggle"data-bs-toggle="dropdown"role="button">Bottomwear</a>
+    <ul class="dropdown-menu">
+      <li><a class="dropdown-item" href="{% url 'search_product' %}?product=Pants">Pants</a></li>
+      <li><a class="dropdown-item" href="{% url 'search_product' %}?product=Jeans">Jeans</a></li>
+      <li><a class="dropdown-item" href="{% url 'search_product' %}?product=Trousers">Trousers</a></li>
+      <li><a class="dropdown-item" href="{% url 'search_product' %}?product=Shorts">Shorts</a></li>
+      <li><a class="dropdown-item" href="{% url 'search_product' %}?product=Sweatpants">Sweatpants</a></li>
+    </div>
+  
+  <div class="col-lg-2"><a href="#" class="nav-link dropdown-toggle"data-bs-toggle="dropdown"role="button">Accessories</a>
+    <ul class="dropdown-menu">
+      <li><a class="dropdown-item" href="{% url 'search_product' %}?product=Watches">Watches</a></li>
+      <li><a class="dropdown-item" href="{% url 'search_product' %}?product=Braclets">Braclets</a></li>
+      <li><a class="dropdown-item" href="{% url 'search_product' %}?product=Sunglasses">Sunglasses</a></li>
+    </ul></div>
+    <div class="col-lg-2"><a href="#" class="nav-link dropdown-toggle"data-bs-toggle="dropdown"role="button">Upperwear</a>
+      <ul class="dropdown-menu">
+        <li><a class="dropdown-item" href="{% url 'search_product' %}?product=t-shirts">T-shirts</a></li>
+        <li><a class="dropdown-item" href="{% url 'search_product' %}?product=Shirt">Shirts</a></li>
+        <li><a class="dropdown-item" href="{% url 'search_product' %}?product=Sweatshirt">Sweatshirts</a></li>
+        <li><a class="dropdown-item" href="{% url 'search_product' %}?product=jacket">Jackets</a></li>
+        <li><a class="dropdown-item" href="{% url 'search_product' %}?product=Hoodies">Hoddies</a></li>
+      </ul></div>
+      <div class="col-lg-2"><a href="#" class="nav-link dropdown-toggle"data-bs-toggle="dropdown"role="button">Footwear</a>
+        <ul class="dropdown-menu">
+          <li><a class="dropdown-item" href="{% url 'search_product' %}?product=Sneakers">Sneakers</a></li>
+          <li><a class="dropdown-item" href="{% url 'search_product' %}?product=Loafer">Loafer</a></li>
+          <li><a class="dropdown-item" href="{% url 'search_product' %}?product=Sports_Shoes">Sports Shoes</a></li>
+          <li><a class="dropdown-item" href="{% url 'search_product' %}?product=Flip_flop">Flip-flops</a></li>
+          <li><a class="dropdown-item" href="{% url 'search_product' %}?product=Boots">Boots</a></li>
+        </ul></div>
+
+        
+
+
+</div>
+
+
+{% endblock header %}
+
+<!-- end header-->
+  
+<!-- start content-->
+{% block content %}
+
+{% endblock content %}
+<!-- end content-->
+
+<!-- start footer-->
+
+{% block footer %}
+
+
+
+<div class="container-fluid">
+<div class="row">
+
+   <footer class="bd-footer py-4 py-md-5 mt-5 bg-body-tertiary">
+    
+  <div class="container py-4 py-md-5 px-4 px-md-3 text-body-secondary">
+    <div class="row">
+      <div class="col-lg-3 mb-3">
+        
+        <a class="d-inline-flex align-items-center mb-2 text-body-emphasis text-decoration-none" href="/" aria-label="Bootstrap">
+          <img src="{% static 'images/LOGO.png' %}" alt="" height="70" width="80">
+          
+          <span class="fs-5">ShopKart</span>
+        </a>
+        <ul class="list-unstyled small">
+          <li class="mb-2"><h3>Contact Details</h3></li>
+          <li class="mb-2"><h5>Email:-shoekart@gmail.com</h5></li>
+          <li class="mb-2"><h5>Contact Number:- <br> 546335323</h5></li>
+        </ul>
+        <br>
+        <div class="col_imgcus newcol_img" scroll-me="true">
+          <img class="lazyload" src="{% static 'images/qua.png' %}" alt="image" width="auto" height="100">
+        </div>
+      </div>
+
+      <div class="col-6 col-lg-2 offset-lg-1 mb-3">
+        <h5>Links</h5>
+        <ul class="list-unstyled">
+          <li class="mb-2"><a href="/">Home</a></li>
+          <li class="mb-2"><a href="cart">Cart</a></li>
+            <li class="mb-2"><a href="orders">Orders</a></li>
+            <li class="mb-2"><a href="wishlist">Wishlist</a></li>
+            <li class="mb-2"><a href="about">About us</a></li>
+        </ul>
+    </div>
+    <!-- Column for Mail us -->
+    <div class="col-6 col-lg-2 mb-3">
+        <h5>Mail us</h5>
+        <p>Shopkart Internet Private Limited,
+           Buildings Alyssa, Begonia & Clove Embassy Tech Village,
+           Outer Ring Road,Thakur Village,
+           Mumbai, 401107, Maharastra, India</p>
+    </div>
+      </div>
+     
+      
+      
+      
+      
+    </div>
+  </div>
+</footer>
+
+</div>
+</div>
+
+{% endblock footer %}
+<!-- end footer -->
+</body>
+</html>
