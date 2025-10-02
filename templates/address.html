@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+{% block title %}ShopKart-About{% endblock title %}
+{% block content %}
+
+<div class="container-fluid">
+<div class="row">
+<div class="col">
+<div>
+<h5 style="color: grey; font-size: 35px; font-weight: bold;">Saved Addresses</h5>
+
+{% for i in address %}
+    
+   <span class="ms-3"><strong>Address {{forloop.counter}} :</strong></span> <a href="/confirm_order/{{i.id}}" class="nav-link"><p class="border-bottom  ms-5" style="width:500px">{{i.address}},{{i.pincode}}</p></a>
+   <a href="/update_address/{{i.id}}"><button class="btn btn-sm btn-warning">Edit</button></a> 
+    <a href="/delete_address/{{i.id}}"><button class="btn btn-sm btn-danger">Delete</button></a>
+    <br><br>
+
+{% empty %}
+
+    <p>No address added yet</p>
+
+{% endfor %}
+</div>
+</div>
+
+
+<div class="col">
+<form action="" method="post">
+{% csrf_token %}
+<div class="col-12 m-2">
+    <label for="inputAddress" class="form-label">Address</label>
+    <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St" name = "address" {% if update_address %}value ="{{update_address.address}}" {% endif %} required >
+  </div>
+
+  <div class="col-md-2 m-2">
+    <label for="inputZip" class="form-label">Zip</label>
+    <input type="text" class="form-control" id="inputZip" name = "pincode" minlength="6" maxlength="6" {% if update_address %}value ="{{update_address.pincode}}" {% endif %} required>
+  </div>
+
+  <div class="col-12">
+  {% if update_address %}
+    <button type="submit" class="btn btn-primary mt-3">Update Address</button>
+  {% else %}
+    <button type="submit" class="btn btn-primary mt-3">Add new Address</button>
+  {% endif %}
+    
+  </div>
+
+</form>
+
+
+</div>
+
+</div>
+</div>
+
+
+
+
+
+
+
+
+
+
+{% endblock content %}

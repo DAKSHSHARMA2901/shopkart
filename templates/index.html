@@ -1,0 +1,417 @@
+{% extends "base.html" %}
+
+{% block title %}ShopKart - Your Ultimate Fashion Destination{% endblock title %}
+
+{% block content %}
+
+<!-- Hero Section -->
+<section class="hero-section" style="background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 50%, #fbbf24 100%); padding: 60px 0; position: relative; overflow: hidden;">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-6 text-white">
+                <h1 class="display-3 fw-bold mb-4 animate__animated animate__fadeInLeft" style="animation-delay: 0.2s;">
+                    Discover Your Style
+                </h1>
+                <p class="lead mb-4 animate__animated animate__fadeInLeft" style="animation-delay: 0.4s; font-size: 1.3rem;">
+                    Shop the latest trends in footwear, clothing, and accessories. Up to 50% off on selected items!
+                </p>
+                <div class="animate__animated animate__fadeInLeft" style="animation-delay: 0.6s;">
+                    <a href="#products" class="btn btn-light btn-lg me-3 hover-lift" style="border-radius: 30px; padding: 15px 35px; font-weight: 700;">
+                        <i class="fas fa-shopping-bag me-2"></i>Shop Now
+                    </a>
+                    <a href="{% url 'about' %}" class="btn btn-outline-light btn-lg hover-lift" style="border-radius: 30px; padding: 15px 35px; font-weight: 700; border-width: 3px;">
+                        Learn More
+                    </a>
+                </div>
+            </div>
+            <div class="col-lg-6 text-center animate__animated animate__fadeInRight" style="animation-delay: 0.4s;">
+                <div style="position: relative;">
+                    <i class="fas fa-shopping-cart" style="font-size: 15rem; color: rgba(255,255,255,0.2); animation: float 3s ease-in-out infinite;"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Decorative Elements -->
+    <div style="position: absolute; width: 300px; height: 300px; background: rgba(255,255,255,0.1); border-radius: 50%; top: -100px; right: -100px;"></div>
+    <div style="position: absolute; width: 200px; height: 200px; background: rgba(255,255,255,0.1); border-radius: 50%; bottom: -50px; left: -50px;"></div>
+</section>
+
+<!-- Features Section -->
+<section class="py-4 bg-white shadow-sm">
+    <div class="container">
+        <div class="row text-center">
+            <div class="col-md-3 col-6 mb-3">
+                <div class="p-3">
+                    <i class="fas fa-truck fa-3x text-primary mb-3"></i>
+                    <h6 class="fw-bold">Free Delivery</h6>
+                    <small class="text-muted">On orders above ₹999</small>
+                </div>
+            </div>
+            <div class="col-md-3 col-6 mb-3">
+                <div class="p-3">
+                    <i class="fas fa-undo fa-3x text-success mb-3"></i>
+                    <h6 class="fw-bold">10 Days Return</h6>
+                    <small class="text-muted">Easy returns policy</small>
+                </div>
+            </div>
+            <div class="col-md-3 col-6 mb-3">
+                <div class="p-3">
+                    <i class="fas fa-shield-alt fa-3x text-warning mb-3"></i>
+                    <h6 class="fw-bold">Secure Payment</h6>
+                    <small class="text-muted">100% safe & secure</small>
+                </div>
+            </div>
+            <div class="col-md-3 col-6 mb-3">
+                <div class="p-3">
+                    <i class="fas fa-headset fa-3x text-danger mb-3"></i>
+                    <h6 class="fw-bold">24/7 Support</h6>
+                    <small class="text-muted">Dedicated support</small>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Category Navigation -->
+<div class="row bg-body-tertiary py-3 text-center category-menu shadow-sm" id="products">
+    <div class="col-lg-2 col-md-4 col-6 mb-2">
+        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button">
+            <i class="fas fa-shoe-prints"></i> Footwear
+        </a>
+        <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="{% url 'search_product' %}?product=Sneakers"><i class="fas fa-running"></i> Sneakers</a></li>
+            <li><a class="dropdown-item" href="{% url 'search_product' %}?product=Loafer"><i class="fas fa-shoe-prints"></i> Loafer</a></li>
+            <li><a class="dropdown-item" href="{% url 'search_product' %}?product=Sports_Shoes"><i class="fas fa-futbol"></i> Sports Shoes</a></li>
+            <li><a class="dropdown-item" href="{% url 'search_product' %}?product=Flip_flop"><i class="fas fa-socks"></i> Flip-flops</a></li>
+            <li><a class="dropdown-item" href="{% url 'search_product' %}?product=Boots"><i class="fas fa-boot"></i> Boots</a></li>
+        </ul>
+    </div>
+    
+    <div class="col-lg-2 col-md-4 col-6 mb-2">
+        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button">
+            <i class="fas fa-tshirt"></i> Upperwear
+        </a>
+        <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="{% url 'search_product' %}?product=t-shirts"><i class="fas fa-tshirt"></i> T-shirts</a></li>
+            <li><a class="dropdown-item" href="{% url 'search_product' %}?product=Shirt"><i class="fas fa-user-tie"></i> Shirts</a></li>
+            <li><a class="dropdown-item" href="{% url 'search_product' %}?product=Sweatshirt"><i class="fas fa-wind"></i> Sweatshirts</a></li>
+            <li><a class="dropdown-item" href="{% url 'search_product' %}?product=jacket"><i class="fas fa-mitten"></i> Jackets</a></li>
+            <li><a class="dropdown-item" href="{% url 'search_product' %}?product=Hoodies"><i class="fas fa-snowman"></i> Hoodies</a></li>
+        </ul>
+    </div>
+    
+    <div class="col-lg-2 col-md-4 col-6 mb-2">
+        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button">
+            <i class="fas fa-jeans"></i> Bottomwear
+        </a>
+        <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="{% url 'search_product' %}?product=Pants"><i class="fas fa-person"></i> Pants</a></li>
+            <li><a class="dropdown-item" href="{% url 'search_product' %}?product=Cargos"><i class="fas fa-truck-pickup"></i> Cargos</a></li>
+            <li><a class="dropdown-item" href="{% url 'search_product' %}?product=Trousers"><i class="fas fa-male"></i> Trousers</a></li>
+            <li><a class="dropdown-item" href="{% url 'search_product' %}?product=Shorts"><i class="fas fa-person-walking"></i> Shorts</a></li>
+            <li><a class="dropdown-item" href="{% url 'search_product' %}?product=Sweatpants"><i class="fas fa-dumbbell"></i> Sweatpants</a></li>
+        </ul>
+    </div>
+    
+    <div class="col-lg-2 col-md-4 col-6 mb-2">
+        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button">
+            <i class="fas fa-gem"></i> Accessories
+        </a>
+        <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="{% url 'search_product' %}?product=Watches"><i class="fas fa-clock"></i> Watches</a></li>
+            <li><a class="dropdown-item" href="{% url 'search_product' %}?product=Braclets"><i class="fas fa-link"></i> Bracelets</a></li>
+            <li><a class="dropdown-item" href="{% url 'search_product' %}?product=Sunglasses"><i class="fas fa-glasses"></i> Sunglasses</a></li>
+        </ul>
+    </div>
+    
+    <div class="col-lg-2 col-md-4 col-6 mb-2">
+        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button">
+            <i class="fas fa-filter"></i> Sort by Price
+        </a>
+        <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="#" onclick="sortPrice('asc'); return false;"><i class="fas fa-arrow-up"></i> Low to High</a></li>
+            <li><a class="dropdown-item" href="#" onclick="sortPrice('desc'); return false;"><i class="fas fa-arrow-down"></i> High to Low</a></li>
+        </ul>
+    </div>
+</div>
+
+<!-- Main Content -->
+<div class="container-fluid px-4 mt-5">
+    <div class="row">
+        <!-- Products Section -->
+        <div class="col-lg-12">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h2 class="gradient-text" style="font-size: 2.5rem;">
+                    <i class="fas fa-fire-alt me-2"></i>Featured Products
+                </h2>
+                <span class="badge badge-custom" style="font-size: 16px; padding: 10px 20px;">
+                    <i class="fas fa-box me-2"></i>{{products|length}} Products
+                </span>
+            </div>
+            
+            <div class="row justify-content-start g-4" id="productList">
+                {% for product in products %}
+                <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 fade-in">
+                    <div class="card hover-lift" style="height: 100%;">
+                        <a href="product_details/{{product.id}}" class="nav-link">
+                            <div class="position-relative overflow-hidden" style="height: 300px;">
+                                <img src="{{product.image.url}}" class="card-img-top" alt="{{product.product_name}}" style="height: 100%; object-fit: cover;">
+                                <span class="position-absolute top-0 end-0 badge bg-danger m-3" style="font-size: 14px; padding: 8px 12px;">
+                                    <i class="fas fa-tag me-1"></i>50% OFF
+                                </span>
+                                <div class="position-absolute bottom-0 start-0 w-100 p-3" style="background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);">
+                                    <div class="text-white">
+                                        <i class="fas fa-star text-warning"></i>
+                                        <i class="fas fa-star text-warning"></i>
+                                        <i class="fas fa-star text-warning"></i>
+                                        <i class="fas fa-star text-warning"></i>
+                                        <i class="fas fa-star-half-alt text-warning"></i>
+                                        <small class="ms-2">(4.5)</small>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <h5 class="card-title">{{product.product_name}}</h5>
+                                <div class="d-flex justify-content-between align-items-center mt-3">
+                                    <div>
+                                        <p class="card-text mb-1">
+                                            <strong style="font-size: 24px;">₹{{product.price}}</strong>
+                                        </p>
+                                        <small class="text-muted">
+                                            <del>₹{{product.price|add:product.price}}</del>
+                                            <span class="text-success ms-2">
+                                                <i class="fas fa-check-circle"></i> 50% off
+                                            </span>
+                                        </small>
+                                    </div>
+                                    <button class="btn btn-sm btn-primary hover-lift" style="border-radius: 20px; padding: 8px 16px;">
+                                        <i class="fas fa-eye me-1"></i>View
+                                    </button>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                {% empty %}
+                <div class="col-12 text-center py-5">
+                    <img src="https://cdn-icons-png.flaticon.com/512/4076/4076478.png" alt="No products" width="200" class="mb-4">
+                    <h3 class="mt-3 text-muted">No products available</h3>
+                    <p class="text-muted">Check back later for amazing deals!</p>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Animate.css for Hero Animations -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+
+<script>
+    function sortPrice(order) {
+        let productList = document.getElementById('productList');
+        let items = Array.from(productList.children);
+
+        items.sort(function(a, b) {
+            let priceTextA = a.querySelector('.card-text strong');
+            let priceTextB = b.querySelector('.card-text strong');
+            
+            if (!priceTextA || !priceTextB) return 0;
+            
+            let priceA = parseFloat(priceTextA.innerText.replace('₹', '').replace(',', ''));
+            let priceB = parseFloat(priceTextB.innerText.replace('₹', '').replace(',', ''));
+
+            if (order === 'asc') {
+                return priceA - priceB;
+            } else {
+                return priceB - priceA;
+            }
+        });
+
+        // Clear the existing list
+        productList.innerHTML = '';
+
+        // Append sorted items with stagger animation
+        items.forEach(function(item, index) {
+            setTimeout(function() {
+                item.style.animation = 'fadeIn 0.6s ease forwards';
+                productList.appendChild(item);
+            }, index * 50);
+        });
+    }
+
+    // Smooth scroll for Shop Now button
+    document.querySelector('a[href="#products"]')?.addEventListener('click', function(e) {
+        e.preventDefault();
+        document.getElementById('products').scrollIntoView({ behavior: 'smooth' });
+    });
+</script>
+
+<style>
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-20px);
+    }
+}
+</style>
+
+<div class="row bg-body-tertiary py-3 text-center category-menu shadow-sm">
+    <div class="col-lg-2 col-md-4 col-6">
+        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button">
+            <i class="fas fa-shoe-prints"></i> Footwear
+        </a>
+        <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="{% url 'search_product' %}?product=Sneakers">👟 Sneakers</a></li>
+            <li><a class="dropdown-item" href="{% url 'search_product' %}?product=Loafer">👞 Loafer</a></li>
+            <li><a class="dropdown-item" href="{% url 'search_product' %}?product=Sports_Shoes">⚽ Sports Shoes</a></li>
+            <li><a class="dropdown-item" href="{% url 'search_product' %}?product=Flip_flop">🩴 Flip-flops</a></li>
+            <li><a class="dropdown-item" href="{% url 'search_product' %}?product=Boots">🥾 Boots</a></li>
+        </ul>
+    </div>
+    
+    <div class="col-lg-2 col-md-4 col-6">
+        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button">
+            <i class="fas fa-tshirt"></i> Upperwear
+        </a>
+        <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="{% url 'search_product' %}?product=t-shirts">👕 T-shirts</a></li>
+            <li><a class="dropdown-item" href="{% url 'search_product' %}?product=Shirt">👔 Shirts</a></li>
+            <li><a class="dropdown-item" href="{% url 'search_product' %}?product=Sweatshirt">🧥 Sweatshirts</a></li>
+            <li><a class="dropdown-item" href="{% url 'search_product' %}?product=jacket">🧥 Jackets</a></li>
+            <li><a class="dropdown-item" href="{% url 'search_product' %}?product=Hoodies">🧥 Hoodies</a></li>
+        </ul>
+    </div>
+    
+    <div class="col-lg-2 col-md-4 col-6">
+        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button">
+            <i class="fas fa-jeans"></i> Bottomwear
+        </a>
+        <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="{% url 'search_product' %}?product=Pants">👖 Pants</a></li>
+            <li><a class="dropdown-item" href="{% url 'search_product' %}?product=Cargos">👖 Cargos</a></li>
+            <li><a class="dropdown-item" href="{% url 'search_product' %}?product=Trousers">👖 Trousers</a></li>
+            <li><a class="dropdown-item" href="{% url 'search_product' %}?product=Shorts">🩳 Shorts</a></li>
+            <li><a class="dropdown-item" href="{% url 'search_product' %}?product=Sweatpants">🩳 Sweatpants</a></li>
+        </ul>
+    </div>
+    
+    <div class="col-lg-2 col-md-4 col-6">
+        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button">
+            <i class="fas fa-gem"></i> Accessories
+        </a>
+        <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="{% url 'search_product' %}?product=Watches">⌚ Watches</a></li>
+            <li><a class="dropdown-item" href="{% url 'search_product' %}?product=Braclets">📿 Bracelets</a></li>
+            <li><a class="dropdown-item" href="{% url 'search_product' %}?product=Sunglasses">🕶️ Sunglasses</a></li>
+        </ul>
+    </div>
+    
+    <div class="col-lg-2 col-md-4 col-6">
+        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button">
+            <i class="fas fa-filter"></i> Sort by Price
+        </a>
+        <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="#" onclick="sortPrice('asc'); return false;">💰 Low to High</a></li>
+            <li><a class="dropdown-item" href="#" onclick="sortPrice('desc'); return false;">💎 High to Low</a></li>
+        </ul>
+    </div>
+</div>
+
+<!-- Main Content -->
+<div class="container-fluid px-4 mt-4">
+    <div class="row">
+        <!-- Products Section -->
+        <div class="col-lg-12">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h2 class="gradient-text">Featured Products</h2>
+                <span class="badge badge-custom">{{products|length}} Products Available</span>
+            </div>
+            
+            <div class="row justify-content-start" id="productList">
+                {% for product in products %}
+                <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 mb-4 fade-in">
+                    <div class="card hover-lift">
+                        <a href="product_details/{{product.id}}" class="nav-link">
+                            <div class="position-relative overflow-hidden">
+                                <img src="{{product.image.url}}" class="card-img-top" alt="{{product.product_name}}" height="280px">
+                                <span class="position-absolute top-0 end-0 badge bg-danger m-2">50% OFF</span>
+                            </div>
+                            <div class="card-body">
+                                <h5 class="card-title">{{product.product_name}}</h5>
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div>
+                                        <p class="card-text mb-0">
+                                            <strong>₹{{product.price}}</strong>
+                                            <del class="text-muted ms-2">₹{{product.price|add:product.price}}</del>
+                                        </p>
+                                        <span class="text-success">
+                                            <small>✓ 50% off</small>
+                                        </span>
+                                    </div>
+                                    <button class="btn btn-sm btn-outline-primary">View</button>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                {% empty %}
+                <div class="col-12 text-center py-5">
+                    <img src="https://cdn-icons-png.flaticon.com/512/4076/4076478.png" alt="No products" width="200">
+                    <h3 class="mt-3 text-muted">No products available</h3>
+                    <p class="text-muted">Check back later for amazing deals!</p>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function sortPrice(order) {
+        let productList = document.getElementById('productList');
+        let items = Array.from(productList.children);
+
+        items.sort(function(a, b) {
+            let priceTextA = a.querySelector('.card-text strong');
+            let priceTextB = b.querySelector('.card-text strong');
+            
+            if (!priceTextA || !priceTextB) return 0;
+            
+            let priceA = parseFloat(priceTextA.innerText.replace('₹', '').replace(',', ''));
+            let priceB = parseFloat(priceTextB.innerText.replace('₹', '').replace(',', ''));
+
+            if (order === 'asc') {
+                return priceA - priceB;
+            } else {
+                return priceB - priceA;
+            }
+        });
+
+        // Clear the existing list
+        productList.innerHTML = '';
+
+        // Append sorted items to the list with animation
+        items.forEach(function(item, index) {
+            setTimeout(function() {
+                item.style.animation = 'fadeIn 0.5s ease';
+                productList.appendChild(item);
+            }, index * 50);
+        });
+    }
+
+    // Add animation on load
+    document.addEventListener('DOMContentLoaded', function() {
+        const cards = document.querySelectorAll('.fade-in');
+        cards.forEach((card, index) => {
+            setTimeout(() => {
+                card.style.opacity = '0';
+                card.style.animation = 'fadeIn 0.6s ease forwards';
+            }, index * 50);
+        });
+    });
+</script>
+
+{% endblock content %}

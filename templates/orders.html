@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block title %}ShopKart-About{% endblock title %}
+{% block content %}
+<h5 style="color: grey; font-size: 35px; font-weight: bold;">Order Page</h5>
+
+<div class="container-fluid">
+<div class="row">
+    <table class="table table-border">
+    <tr>
+        <th>Sr.no</th>
+        {% comment %} <th>Order id</th> {% endcomment %}
+        <th>Product</th>
+        <th>Qty</th>
+        <th>Price</th>
+        <th>Order Date</th>
+        
+    </tr>
+{% for i in allorders  %}
+      <tr>
+        <td>{{forloop.counter}}</td>
+        {% comment %} <td>{{i.order_id}}</td> {% endcomment %}
+        <td>{{i.product}}</td>
+        <td>{{i.quantity}}</td>
+        <td>{{i.product.price}}</td>
+        <td>{{i.order_date}}</td>
+      </tr>
+{% endfor %}
+</table>
+
+</div>
+</div>
+{% endblock content %}

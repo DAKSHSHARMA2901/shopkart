@@ -1,0 +1,113 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}ShopKart - Sign Up{% endblock title %}
+
+{% block header %}
+<!-- Minimal header for auth pages -->
+<div class="container-fluid">
+    <nav class="navbar navbar-expand-lg navbg">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="{% url 'index' %}">
+                <img src="{% static 'images/logoo.png' %}" alt="ShopKart" width="80" height="70">
+            </a>
+            <span class="text-white fw-bold ms-auto">ShopKart</span>
+        </div>
+    </nav>
+</div>
+{% endblock header %}
+
+{% block content %}
+<div class="auth-container" style="min-height: 100vh;">
+    <div class="auth-card fade-in" style="max-width: 600px;">
+        {% if error %}
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <strong>Error!</strong> {{error}}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+        {% endif %}
+        
+        <div class="text-center mb-4">
+            <img src="{% static 'images/logoo.png' %}" alt="ShopKart" width="100" height="90" class="mb-3">
+            <h3 class="gradient-text">Join ShopKart</h3>
+            <p class="text-muted">Create your account and start shopping</p>
+        </div>
+        
+        <form action="" method="post">
+            {% csrf_token %}
+            
+            <div class="row mb-3">
+                <div class="col-md-6">
+                    <label for="firstNameInput" class="form-label fw-bold">
+                        <i class="fas fa-user"></i> First Name
+                    </label>
+                    <input type="text" class="form-control" name="fname" 
+                           placeholder="First name" id="firstNameInput" required>
+                </div>
+                <div class="col-md-6">
+                    <label for="lastNameInput" class="form-label fw-bold">
+                        <i class="fas fa-user"></i> Last Name
+                    </label>
+                    <input type="text" class="form-control" name="lname" 
+                           placeholder="Last name" id="lastNameInput" required>
+                </div>
+            </div>
+            
+            <div class="mb-3">
+                <label for="emailInput" class="form-label fw-bold">
+                    <i class="fas fa-envelope"></i> Email Address
+                </label>
+                <input type="email" class="form-control" name="email" 
+                       placeholder="Enter your email" id="emailInput" required>
+                <div class="form-text">
+                    <small>We'll never share your email with anyone else.</small>
+                </div>
+            </div>
+            
+            <div class="mb-3">
+                <label for="passwordInput" class="form-label fw-bold">
+                    <i class="fas fa-lock"></i> Password
+                </label>
+                <input type="password" class="form-control" name="pass1" 
+                       placeholder="Create password" id="passwordInput" required>
+            </div>
+            
+            <div class="mb-3">
+                <label for="confirmPasswordInput" class="form-label fw-bold">
+                    <i class="fas fa-lock"></i> Confirm Password
+                </label>
+                <input type="password" class="form-control" name="pass2" 
+                       placeholder="Confirm password" id="confirmPasswordInput" required>
+            </div>
+            
+            <div class="mb-4 form-check">
+                <input type="checkbox" class="form-check-input" id="termsCheck" required>
+                <label class="form-check-label" for="termsCheck">
+                    I agree to <a href="#" class="text-decoration-none">terms and conditions</a>
+                </label>
+            </div>
+            
+            <div class="d-grid mb-3">
+                <button type="submit" class="btn btn-primary btn-lg">
+                    <i class="fas fa-user-plus"></i> Create Account
+                </button>
+            </div>
+            
+            <div class="text-center">
+                <hr>
+                <p class="mb-0">
+                    Already have an account? 
+                    <a href="{% url 'signin' %}" class="fw-bold text-decoration-none">
+                        Sign in here <i class="fas fa-arrow-right"></i>
+                    </a>
+                </p>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock content %}
+
+{% block footer %}
+<!-- No footer for auth pages -->
+{% endblock footer %} 
+
+

@@ -1,0 +1,117 @@
+{% extends "base.html" %}
+{% block title %}Payment - ShopKart{% endblock title %}
+{% block content %}
+
+<div class="container my-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-6 col-md-8">
+            <div class="product-details-container text-center fade-in">
+                <div class="mb-4">
+                    <i class="fas fa-credit-card text-primary" style="font-size: 4rem;"></i>
+                    <h2 class="gradient-text mt-3">Complete Your Payment</h2>
+                    <p class="text-muted">Choose your preferred payment method</p>
+                </div>
+
+                <div class="mb-4 p-4 bg-light rounded-4">
+                    <h3 class="mb-0">Order Total</h3>
+                    <h1 class="text-primary fw-bold mt-2">₹{{data.amount}}</h1>
+                </div>
+
+                <div class="d-grid gap-3">
+                    <button id="rzp-button1" type="button" class="btn btn-primary btn-lg hover-lift">
+                        <i class="fas fa-credit-card me-2"></i>
+                        Pay with Razorpay
+                    </button>
+
+                    <div class="text-center my-2">
+                        <span class="text-muted">OR</span>
+                    </div>
+
+                    <a href="{% url 'index' %}">
+                        <button id="cashOnDeliveryBtn" type="button" class="btn btn-outline-success btn-lg w-100 hover-lift">
+                            <i class="fas fa-money-bill-wave me-2"></i>
+                            Cash on Delivery
+                        </button>
+                    </a>
+                </div>
+
+                <div class="mt-4 p-3 bg-success bg-opacity-10 rounded-3">
+                    <small class="text-muted">
+                        <i class="fas fa-shield-alt text-success me-2"></i>
+                        Your payment information is secure and encrypted
+                    </small>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+<script>
+var options = {
+    "key": "rzp_test_ROdO6CGivLBaVf",
+    "amount": "{{data.amount}}",
+    "currency": "INR",
+    "name": "ShopKart",
+    "description": "Complete your purchase",
+    "image": "logo.png",
+    "order_id": "{{data.id}}",
+    "handler": function (response){
+        // Show success animation
+        Swal.fire({
+            icon: 'success',
+            title: 'Payment Successful!',
+            text: 'Thank you for your purchase',
+            confirmButtonColor: '#3085d6',
+            confirmButtonText: 'Continue Shopping'
+        }).then((result) => {
+            window.location.href = window.location.origin;
+        });
+    },
+    "prefill": {
+        "name": "{{user.first_name}} {{user.last_name}}",
+        "email": "{{user.email}}",
+        "contact": "9000090000"
+    },
+    "notes": {
+        "address": "ShopKart Order"
+    },
+    "theme": {
+        "color": "#667eea"
+    }
+};
+
+var rzp1 = new Razorpay(options);
+
+rzp1.on('payment.failed', function (response){
+    Swal.fire({
+        icon: 'error',
+        title: 'Payment Failed',
+        html: '<strong>Error:</strong> ' + response.error.description + '<br><small>Reason: ' + response.error.reason + '</small>',
+        confirmButtonText: 'Try Again'
+    });
+});
+
+document.getElementById('rzp-button1').onclick = function(e){
+    rzp1.open();
+    e.preventDefault();
+}
+
+document.getElementById('cashOnDeliveryBtn').addEventListener('click', function(e) {
+    e.preventDefault();
+    Swal.fire({
+        icon: 'success',
+        title: 'Order Placed!',
+        text: 'Your order has been successfully placed with Cash on Delivery',
+        confirmButtonColor: '#28a745',
+        confirmButtonText: 'Continue Shopping'
+    }).then((result) => {
+        window.location.href = window.location.origin;
+    });
+});
+</script>
+
+<!-- Add SweetAlert2 for better alerts -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+{% endblock content %}

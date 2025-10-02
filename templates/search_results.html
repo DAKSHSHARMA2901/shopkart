@@ -1,0 +1,180 @@
+{% extends "base.html" %}
+
+{% block title %}Search Results - ShopKart{% endblock title %}
+
+{% block content %}
+
+<!-- Search Results Header -->
+<section class="py-4 bg-light">
+    <div class="container">
+        <h2 class="fw-bold mb-2">
+            <i class="fas fa-search text-primary me-2"></i>Search Results
+        </h2>
+        <p class="text-muted mb-0">
+            Found <strong>{{ products|length }}</strong> product{{ products|length|pluralize }}
+        </p>
+    </div>
+</section>
+
+<!-- Category Navigation -->
+<div class="row bg-body-tertiary py-3 text-center category-menu shadow-sm">
+    <div class="col-lg-2 col-md-4 col-6">
+        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button">
+            <i class="fas fa-shoe-prints"></i> Footwear
+        </a>
+        <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="{% url 'search_product' %}?product=Sneakers">👟 Sneakers</a></li>
+            <li><a class="dropdown-item" href="{% url 'search_product' %}?product=Loafer">👞 Loafer</a></li>
+            <li><a class="dropdown-item" href="{% url 'search_product' %}?product=Sports_Shoes">⚽ Sports Shoes</a></li>
+            <li><a class="dropdown-item" href="{% url 'search_product' %}?product=Flip_flop">🩴 Flip-flops</a></li>
+            <li><a class="dropdown-item" href="{% url 'search_product' %}?product=Boots">🥾 Boots</a></li>
+        </ul>
+    </div>
+    
+    <div class="col-lg-2 col-md-4 col-6">
+        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button">
+            <i class="fas fa-tshirt"></i> Upperwear
+        </a>
+        <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="{% url 'search_product' %}?product=Shirt">👔 Shirts</a></li>
+            <li><a class="dropdown-item" href="{% url 'search_product' %}?product=Tshirt">👕 T-Shirts</a></li>
+            <li><a class="dropdown-item" href="{% url 'search_product' %}?product=Jacket">🧥 Jackets</a></li>
+            <li><a class="dropdown-item" href="{% url 'search_product' %}?product=Sweater">🧶 Sweaters</a></li>
+            <li><a class="dropdown-item" href="{% url 'search_product' %}?product=Hoodie">🦾 Hoodies</a></li>
+        </ul>
+    </div>
+    
+    <div class="col-lg-2 col-md-4 col-6">
+        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button">
+            <i class="fas fa-tshirt"></i> Bottomwear
+        </a>
+        <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="{% url 'search_product' %}?product=Jeans">👖 Jeans</a></li>
+            <li><a class="dropdown-item" href="{% url 'search_product' %}?product=Pants">👔 Pants</a></li>
+            <li><a class="dropdown-item" href="{% url 'search_product' %}?product=Trousers">👔 Trousers</a></li>
+            <li><a class="dropdown-item" href="{% url 'search_product' %}?product=Shorts">🩳 Shorts</a></li>
+            <li><a class="dropdown-item" href="{% url 'search_product' %}?product=Chino">👔 Chinos</a></li>
+        </ul>
+    </div>
+
+    <div class="col-lg-2 col-md-4 col-6">
+        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button">
+            <i class="fas fa-hat-cowboy"></i> Accessories
+        </a>
+        <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="{% url 'search_product' %}?product=Belt">🔗 Belts</a></li>
+            <li><a class="dropdown-item" href="{% url 'search_product' %}?product=Cap">🧢 Caps</a></li>
+            <li><a class="dropdown-item" href="{% url 'search_product' %}?product=Sunglasses">🕶️ Sunglasses</a></li>
+            <li><a class="dropdown-item" href="{% url 'search_product' %}?product=Watch">⌚ Watches</a></li>
+        </ul>
+    </div>
+
+    <div class="col-lg-2 col-md-4 col-6">
+        <a href="{% url 'wishlist' %}" class="nav-link">
+            <i class="fas fa-heart text-danger"></i> Wishlist
+        </a>
+    </div>
+
+    <div class="col-lg-2 col-md-4 col-6">
+        <div class="dropdown d-inline">
+            <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button">
+                <i class="fas fa-sort-amount-down"></i> Sort by Price
+            </a>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="#" onclick="sortPrice('asc')"><i class="fas fa-arrow-up text-success"></i> Low to High</a></li>
+                <li><a class="dropdown-item" href="#" onclick="sortPrice('desc')"><i class="fas fa-arrow-down text-danger"></i> High to Low</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<!-- Products Section -->
+<section id="products" class="py-5">
+    <div class="container">
+        {% if products %}
+        <div class="row g-4" id="productList">
+            {% for product in products %}
+            <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6">
+                <div class="card product-card shadow-sm h-100">
+                    <div class="position-relative" style="height: 300px;">
+                        <img src="{{ product.image.url }}" 
+                             class="card-img-top" 
+                             alt="{{ product.product_name }}"
+                             style="height: 100%; width: 100%; object-fit: cover; display: block;">
+                        <span class="badge bg-danger position-absolute" style="top: 10px; right: 10px; z-index: 10;">
+                            <i class="fas fa-fire"></i> 50% OFF
+                        </span>
+                    </div>
+                    <div class="card-body d-flex flex-column">
+                        <div class="d-flex justify-content-between align-items-start mb-2">
+                            <h6 class="card-title fw-bold mb-0 flex-grow-1">{{ product.product_name }}</h6>
+                            <div class="text-warning ms-2" style="font-size: 0.75rem;">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                            </div>
+                        </div>
+                        <p class="card-text text-muted small mb-2">{{ product.desc|truncatewords:8 }}</p>
+                        <div class="mb-3">
+                            <span class="text-primary fw-bold fs-5">₹{{ product.price }}</span>
+                            <span class="text-muted text-decoration-line-through ms-2">₹{{ product.price|add:product.price }}</span>
+                            <span class="badge bg-success ms-2">50% OFF</span>
+                        </div>
+                        <div class="mt-auto d-flex gap-2">
+                            <a href="{% url 'product_details' product.id %}" class="btn btn-primary btn-sm flex-grow-1">
+                                <i class="fas fa-eye me-1"></i>View Details
+                            </a>
+                            <a href="{% url 'add_cart' product.id %}" class="btn btn-outline-primary btn-sm">
+                                <i class="fas fa-shopping-cart"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        {% else %}
+        <div class="text-center py-5">
+            <i class="fas fa-search fa-5x text-muted mb-4" style="opacity: 0.3;"></i>
+            <h3 class="text-muted">No products found</h3>
+            <p class="text-muted">Try searching with different keywords</p>
+            <a href="{% url 'index' %}" class="btn btn-primary mt-3">
+                <i class="fas fa-home me-2"></i>Back to Home
+            </a>
+        </div>
+        {% endif %}
+    </div>
+</section>
+
+<script>
+    function sortPrice(order) {
+        let productList = document.getElementById('productList');
+        let items = Array.from(productList.children);
+
+        items.sort(function(a, b) {
+            let priceTextA = a.querySelector('.fw-bold.fs-5');
+            let priceTextB = b.querySelector('.fw-bold.fs-5');
+            
+            if (!priceTextA || !priceTextB) return 0;
+            
+            let priceA = parseFloat(priceTextA.innerText.replace('₹', '').replace(',', ''));
+            let priceB = parseFloat(priceTextB.innerText.replace('₹', '').replace(',', ''));
+
+            if (order === 'asc') {
+                return priceA - priceB;
+            } else {
+                return priceB - priceA;
+            }
+        });
+
+        // Clear and re-append
+        productList.innerHTML = '';
+        items.forEach(function(item) {
+            productList.appendChild(item);
+        });
+    }
+</script>
+
+{% endblock content %}
